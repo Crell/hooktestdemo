@@ -108,7 +108,7 @@ final class BlogController extends AbstractController
         EntityManagerInterface $entityManager,
     ): Response {
         $comment = new Comment();
-        $comment->setAuthor($user);
+        $comment->author = $user;
         $post->addComment($comment);
 
         $form = $this->createForm(CommentType::class, $comment);

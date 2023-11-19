@@ -47,7 +47,7 @@ final class CommentNotificationSubscriber implements EventSubscriberInterface
         $comment = $event->getComment();
 
         /** @var Post $post */
-        $post = $comment->getPost();
+        $post = $comment->post;
 
         /** @var User $author */
         $author = $post->author;

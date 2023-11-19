@@ -37,19 +37,19 @@ class Comment
 
     #[ORM\ManyToOne(targetEntity: Post::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Post $post = null;
+    public ?Post $post = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'comment.blank')]
     #[Assert\Length(min: 5, minMessage: 'comment.too_short', max: 10000, maxMessage: 'comment.too_long')]
-    private ?string $content = null;
+    public ?string $content = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private \DateTime $publishedAt;
+    public \DateTime $publishedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
+    public ?User $author = null;
 
     public function __construct()
     {
@@ -67,45 +67,5 @@ class Comment
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): void
-    {
-        $this->content = $content;
-    }
-
-    public function getPublishedAt(): \DateTime
-    {
-        return $this->publishedAt;
-    }
-
-    public function setPublishedAt(\DateTime $publishedAt): void
-    {
-        $this->publishedAt = $publishedAt;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(User $author): void
-    {
-        $this->author = $author;
-    }
-
-    public function getPost(): ?Post
-    {
-        return $this->post;
-    }
-
-    public function setPost(Post $post): void
-    {
-        $this->post = $post;
     }
 }
