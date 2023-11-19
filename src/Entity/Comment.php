@@ -42,7 +42,17 @@ class Comment
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'comment.blank')]
     #[Assert\Length(min: 5, minMessage: 'comment.too_short', max: 10000, maxMessage: 'comment.too_long')]
-    public ?string $content = null;
+    public ?string $content = null {
+        set {
+            if (strlen($value) < 5) {
+                throw new \Exception("Comment too short");
+            }
+            if (strlen($value) > 10000) {
+                throw new \Exception(("Comment too long"));
+            }
+            $field = $value;
+        }
+    }
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     public \DateTime $publishedAt;

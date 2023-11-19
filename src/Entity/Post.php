@@ -56,7 +56,14 @@ class Post
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'post.blank_content')]
     #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
-    public ?string $content = null;
+    public ?string $content = null {
+        set {
+            if (strlen($value) < 10) {
+                throw new \Exception("Post too short");
+            }
+            $field = $value;
+        }
+    }
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     public \DateTime $publishedAt;
