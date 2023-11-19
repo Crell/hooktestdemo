@@ -114,8 +114,8 @@ class BlogControllerTest extends WebTestCase
         $post = $postRepository->findOneByTitle($postTitle);
 
         $this->assertNotNull($post);
-        $this->assertSame($postSummary, $post->getSummary());
-        $this->assertSame($postContent, $post->getContent());
+        $this->assertSame($postSummary, $post->summary);
+        $this->assertSame($postContent, $post->content);
     }
 
     public function testAdminNewDuplicatedPost(): void
@@ -169,7 +169,7 @@ class BlogControllerTest extends WebTestCase
         /** @var \App\Entity\Post $post */
         $post = $postRepository->find(1);
 
-        $this->assertSame($newBlogPostTitle, $post->getTitle());
+        $this->assertSame($newBlogPostTitle, $post->title);
     }
 
     /**

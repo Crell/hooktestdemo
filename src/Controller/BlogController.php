@@ -125,7 +125,7 @@ final class BlogController extends AbstractController
             // See https://symfony.com/doc/current/components/event_dispatcher.html
             $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
 
-            return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
+            return $this->redirectToRoute('blog_post', ['slug' => $post->slug]);
         }
 
         return $this->render('blog/comment_form_error.html.twig', [

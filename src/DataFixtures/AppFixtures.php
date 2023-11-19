@@ -70,12 +70,12 @@ final class AppFixtures extends Fixture
     {
         foreach ($this->getPostData() as [$title, $slug, $summary, $content, $publishedAt, $author, $tags]) {
             $post = new Post();
-            $post->setTitle($title);
-            $post->setSlug($slug);
-            $post->setSummary($summary);
-            $post->setContent($content);
-            $post->setPublishedAt($publishedAt);
-            $post->setAuthor($author);
+            $post->title = $title;
+            $post->slug = $slug;
+            $post->summary = $summary;
+            $post->content = $content;
+            $post->publishedAt = $publishedAt;
+            $post->author = $author;
             $post->addTag(...$tags);
 
             foreach (range(1, 5) as $i) {

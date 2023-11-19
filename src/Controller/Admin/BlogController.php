@@ -77,7 +77,7 @@ final class BlogController extends AbstractController
         EntityManagerInterface $entityManager,
     ): Response {
         $post = new Post();
-        $post->setAuthor($user);
+        $post->author = $user;
 
         // See https://symfony.com/doc/current/form/multiple_buttons.html
         $form = $this->createForm(PostType::class, $post)
@@ -171,7 +171,7 @@ final class BlogController extends AbstractController
         // Delete the tags associated with this blog post. This is done automatically
         // by Doctrine, except for SQLite (the database used in this application)
         // because foreign key support is not enabled by default in SQLite
-        $post->getTags()->clear();
+        $post->tags->clear();
 
         $entityManager->remove($post);
         $entityManager->flush();

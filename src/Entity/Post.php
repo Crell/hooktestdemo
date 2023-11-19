@@ -43,34 +43,34 @@ class Post
 
     #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank]
-    private ?string $title = null;
+    public ?string $title = null;
 
     #[ORM\Column(type: Types::STRING)]
-    private ?string $slug = null;
+    public ?string $slug = null;
 
     #[ORM\Column(type: Types::STRING)]
     #[Assert\NotBlank(message: 'post.blank_summary')]
     #[Assert\Length(max: 255)]
-    private ?string $summary = null;
+    public ?string $summary = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'post.blank_content')]
     #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
-    private ?string $content = null;
+    public ?string $content = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private \DateTime $publishedAt;
+    public \DateTime $publishedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
+    public ?User $author = null;
 
     /**
      * @var Collection<int, Comment>
      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', orphanRemoval: true, cascade: ['persist'])]
     #[ORM\OrderBy(['publishedAt' => 'DESC'])]
-    private Collection $comments;
+    public Collection $comments;
 
     /**
      * @var Collection<int, Tag>
@@ -79,7 +79,7 @@ class Post
     #[ORM\JoinTable(name: 'symfony_demo_post_tag')]
     #[ORM\OrderBy(['name' => 'ASC'])]
     #[Assert\Count(max: 4, maxMessage: 'post.too_many_tags')]
-    private Collection $tags;
+    public Collection $tags;
 
     public function __construct()
     {
@@ -91,64 +91,6 @@ class Post
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): void
-    {
-        $this->slug = $slug;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(?string $content): void
-    {
-        $this->content = $content;
-    }
-
-    public function getPublishedAt(): \DateTime
-    {
-        return $this->publishedAt;
-    }
-
-    public function setPublishedAt(\DateTime $publishedAt): void
-    {
-        $this->publishedAt = $publishedAt;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(User $author): void
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * @return Collection<int, Comment>
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
     }
 
     public function addComment(Comment $comment): void
@@ -164,16 +106,6 @@ class Post
         $this->comments->removeElement($comment);
     }
 
-    public function getSummary(): ?string
-    {
-        return $this->summary;
-    }
-
-    public function setSummary(?string $summary): void
-    {
-        $this->summary = $summary;
-    }
-
     public function addTag(Tag ...$tags): void
     {
         foreach ($tags as $tag) {
@@ -186,13 +118,5 @@ class Post
     public function removeTag(Tag $tag): void
     {
         $this->tags->removeElement($tag);
-    }
-
-    /**
-     * @return Collection<int, Tag>
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
     }
 }

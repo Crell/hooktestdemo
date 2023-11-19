@@ -50,19 +50,19 @@ final class CommentNotificationSubscriber implements EventSubscriberInterface
         $post = $comment->getPost();
 
         /** @var User $author */
-        $author = $post->getAuthor();
+        $author = $post->author;
 
         /** @var string $emailAddress */
         $emailAddress = $author->getEmail();
 
         $linkToPost = $this->urlGenerator->generate('blog_post', [
-            'slug' => $post->getSlug(),
+            'slug' => $post->slug,
             '_fragment' => 'comment_'.$comment->getId(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $subject = $this->translator->trans('notification.comment_created');
         $body = $this->translator->trans('notification.comment_created.description', [
-            'title' => $post->getTitle(),
+            'title' => $post->title,
             'link' => $linkToPost,
         ]);
 

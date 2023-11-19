@@ -61,7 +61,7 @@ final class DefaultControllerTest extends WebTestCase
         /** @var Post $blogPost */
         $blogPost = $registry->getRepository(Post::class)->find(1);
 
-        $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->getSlug()));
+        $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->slug));
         $this->assertResponseIsSuccessful();
     }
 
