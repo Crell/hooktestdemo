@@ -31,7 +31,7 @@ final class TagArrayToStringTransformerTest extends TestCase
         $tags = $this->getMockedTransformer()->reverseTransform('Hello, Demo, How');
 
         $this->assertCount(3, $tags);
-        $this->assertSame('Hello', $tags[0]->getName());
+        $this->assertSame('Hello', $tags[0]->name);
     }
 
     /**
@@ -53,7 +53,7 @@ final class TagArrayToStringTransformerTest extends TestCase
     {
         $tags = $this->getMockedTransformer()->reverseTransform('   Hello   ');
 
-        $this->assertSame('Hello', $tags[0]->getName());
+        $this->assertSame('Hello', $tags[0]->name);
     }
 
     /**
