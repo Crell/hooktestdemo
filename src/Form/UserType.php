@@ -42,7 +42,7 @@ final class UserType extends AbstractType
                 'disabled' => true,
             ])
             ->add('fullName', TextType::class, [
-                'label' => 'label.fullname',
+                'label' => 'label.fullName',
             ])
             ->add('email', EmailType::class, [
                 'label' => 'label.email',

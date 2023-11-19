@@ -41,11 +41,11 @@ final class AppFixtures extends Fixture
     {
         foreach ($this->getUserData() as [$fullname, $username, $password, $email, $roles]) {
             $user = new User();
-            $user->setFullName($fullname);
-            $user->setUsername($username);
-            $user->setPassword($this->passwordHasher->hashPassword($user, $password));
-            $user->setEmail($email);
-            $user->setRoles($roles);
+            $user->fullName = $fullname;
+            $user->username = $username;
+            $user->password = $this->passwordHasher->hashPassword($user, $password);
+            $user->email = $email;
+            $user->roles = $roles;
 
             $manager->persist($user);
             $this->addReference($username, $user);

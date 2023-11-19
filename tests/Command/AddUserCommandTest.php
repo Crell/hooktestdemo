@@ -97,8 +97,8 @@ final class AddUserCommandTest extends AbstractCommandTest
         $user = $repository->findOneByEmail($this->userData['email']);
 
         $this->assertNotNull($user);
-        $this->assertSame($this->userData['full-name'], $user->getFullName());
-        $this->assertSame($this->userData['username'], $user->getUsername());
+        $this->assertSame($this->userData['full-name'], $user->fullName);
+        $this->assertSame($this->userData['username'], $user->username);
         $this->assertTrue($passwordHasher->isPasswordValid($user, $this->userData['password']));
         $this->assertSame($isAdmin ? ['ROLE_ADMIN'] : ['ROLE_USER'], $user->getRoles());
     }

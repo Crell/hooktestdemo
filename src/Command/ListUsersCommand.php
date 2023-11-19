@@ -94,9 +94,9 @@ final class ListUsersCommand extends Command
         $createUserArray = static function (User $user) {
             return [
                 $user->getId(),
-                $user->getFullName(),
-                $user->getUsername(),
-                $user->getEmail(),
+                $user->fullName,
+                $user->username,
+                $user->email,
                 implode(', ', $user->getRoles()),
             ];
         };

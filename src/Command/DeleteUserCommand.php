@@ -123,8 +123,8 @@ final class DeleteUserCommand extends Command
         $this->entityManager->remove($user);
         $this->entityManager->flush();
 
-        $userUsername = $user->getUsername();
-        $userEmail = $user->getEmail();
+        $userUsername = $user->username;
+        $userEmail = $user->email;
 
         $this->io->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $userUsername, $userId, $userEmail));
 

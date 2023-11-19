@@ -183,19 +183,19 @@ final class AddUserCommand extends Command
 
         // create the user and hash its password
         $user = new User();
-        $user->setFullName($fullName);
-        $user->setUsername($username);
-        $user->setEmail($email);
-        $user->setRoles([$isAdmin ? User::ROLE_ADMIN : User::ROLE_USER]);
+        $user->fullName = $fullName;
+        $user->username = $username;
+        $user->email = $email;
+        $user->roles = [$isAdmin ? User::ROLE_ADMIN : User::ROLE_USER];
 
         // See https://symfony.com/doc/5.4/security.html#registering-the-user-hashing-passwords
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
-        $user->setPassword($hashedPassword);
+        $user->password = $hashedPassword;
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        $this->io->success(sprintf('%s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
+        $this->io->success(sprintf('%s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->username, $user->email));
 
         $event = $stopwatch->stop('add-user-command');
         if ($output->isVerbose()) {

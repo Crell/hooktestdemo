@@ -53,7 +53,7 @@ final class CommentNotificationSubscriber implements EventSubscriberInterface
         $author = $post->author;
 
         /** @var string $emailAddress */
-        $emailAddress = $author->getEmail();
+        $emailAddress = $author->email;
 
         $linkToPost = $this->urlGenerator->generate('blog_post', [
             'slug' => $post->slug,

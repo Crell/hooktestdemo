@@ -79,7 +79,7 @@ final class UserControllerTest extends WebTestCase
         $user = $userRepository->findOneByEmail($newUserEmail);
 
         $this->assertNotNull($user);
-        $this->assertSame($newUserEmail, $user->getEmail());
+        $this->assertSame($newUserEmail, $user->email);
     }
 
     public function testChangePassword(): void
